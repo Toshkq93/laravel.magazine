@@ -134,7 +134,7 @@
                             <label for="related">Related</label>
                             <select name="related[]" id="related" multiple="multiple" data-placeholder="Выбор связей" style="width: 100%;">
                                 @foreach($products as $key => $prod)
-                                    <option value="{{ $key }}" @if(in_array($key, $related->pluck('id')->all())) selected @endif>{{ $prod->title }}</option>
+                                    <option value="{{ $prod->id }}" @if(in_array($key, $related->pluck('id')->all())) selected @endif>{{ $prod->title }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -66,17 +66,27 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $data = $request->all();
+
         $data['status'] = $request->input('status') ? true : false;
         $data['bestseller'] = $request->input('bestseller') ? true : false;
+
         if ($file = ProductHelper::uploadImage($request, $product->img)) {
             $data['img'] = $file;
         }
+
         if (isset($data['galleries'])) {
             $images = Gallery::where('product_id', $product->id)->get();
             ProductHelper::deleteGallery($images);
         }
+
         $product->update($data);
         $product->modifications()->sync($request->modifications);
+
+        if ($request->has('related')) {
+            RelatedProduct::where('product_id', $id)->delete();
+        }
+
+        ProductHelper::saveRelated($request->input('related'), $product);
         ProductHelper::uploadGallery($request, $product);
         return redirect()->route('products.index')->with('success', 'Изменения успешно сохранены');
     }
@@ -85,6 +95,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->modifications()->sync([]);
+        RelatedProduct::where('product_id', $id)->delete();
         Gallery::where('product_id', $product->id)->delete();
         Storage::deleteDirectory(date('Y-m-d') . '/' . $product->title);
         $product->delete();

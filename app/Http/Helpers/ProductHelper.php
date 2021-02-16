@@ -51,7 +51,7 @@ class ProductHelper
         return null;
     }
 
-    public static function saveRelated($productsRelated, $product)
+    public static function saveRelated($productsRelated, $product, $delete = null)
     {
         foreach ($productsRelated as $key => $related){
             $product->relatedProducts()->updateOrCreate([
@@ -61,6 +61,7 @@ class ProductHelper
                 'related_id' => $related
             ]);
         }
+
     }
 
     public static function deleteDirectory($titleProduct)
