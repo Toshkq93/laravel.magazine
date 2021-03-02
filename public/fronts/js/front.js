@@ -47,6 +47,7 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    /* modification product*/
     $('.product-select select').on('change', function (){
         var modId = $(this).val(),
             color = $(this).find('option').filter(':selected').data('title'),
@@ -60,7 +61,36 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
              $('#base-price').text(basePrice + code);
         }
     });
-		$.fn.meanmenu = function (options) {
+    /*modal view product*/
+    $('.modal-view').on('click', function (e) {
+        e.preventDefault();
+        var id =  $(this).data('id');
+        var href =  $(this).data('href');
+        $.ajax({
+            url: '/product',
+            data: {id: id},
+            type: 'GET',
+            success: function(res){
+                console.log(href);
+                $('#title-product').text(res.title);
+                $('#price-product').text(res.price);
+                if (res.old_price){
+                    $('#old_price-product').text(res.price);
+                }else{
+                    $('#old_price-product').css('display', 'none')
+                }
+                $('#content-product').text(res.content);
+                $('#img-product').attr('src',  res.img);
+                $('#href-product').attr('href', href);
+                $('#quickview-wrapper').show();
+            },
+            error: function(){
+                alert('Ошибка! Попробуйте позже!');
+            }
+        })
+    });
+
+    $.fn.meanmenu = function (options) {
 				var defaults = {
 						meanMenuTarget: jQuery(this), // Target the current HTML markup you wish to replace
 						meanMenuContainer: '.mobile-menu-area .container', // Choose where meanmenu will be placed within the HTML

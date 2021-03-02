@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Helpers\ProductHelper;
 use App\Product;
 use App\RelatedProduct;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -14,5 +16,15 @@ class ProductController extends Controller
             'product' => Product::where('slug', $slug)->first(),
             'related' => RelatedProduct::related()->get(),
         ]);
+    }
+
+    public function modal(Request $request)
+    {
+        if ($request->ajax()){
+            $product = Product::find($request->id);
+            $product->img = ProductHelper::getImage($product->img);
+            return response()->json($product);
+        }
+
     }
 }

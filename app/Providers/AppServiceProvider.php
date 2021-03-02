@@ -49,20 +49,10 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('fronts.layout.header', function ($view) {
             $currencies = Currency::select('id', 'code')->get();
-            $currBase = Currency::where('code', 'BYN')->first();
 
             $view->with([
                 'currencies' => $currencies,
-                'currBase' => $currBase,
                 ]);
-        });
-
-        view()->composer('fronts.layout.layout', function ($view) {
-            if (session()->has('currency')){
-                session('currency');
-            }else{
-                session()->put(['currency' => Currency::where('code', 'BYN')->first()]);
-            }
         });
     }
 }

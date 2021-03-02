@@ -30,7 +30,8 @@ class ProductStoreRequest extends FormRequest
             'category_id' => 'required|integer',
             'img' => 'nullable|image',
             'price' => 'required|between:0,9999.99',
-            'old_price' => 'required|between:0,9999.99'
+            'old_price' => 'required|between:0,9999.99',
+            'modifications' => 'required',
         ];
     }
 }

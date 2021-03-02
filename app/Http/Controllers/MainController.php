@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Currency;
+use App\Product;
 
 class MainController extends Controller
 {
     public function index()
     {
-        return view('fronts.main.index', ['$dub' => 1]);
+        $products = Product::orderBy('created_at', 'desc')->with('gallery')->get();
+        if (session()->has('currency')){
+             session('currency');
+        }else{
+             session()->put(['currency' => Currency::where('code', 'BYN')->first()]);
+        }
+        return view('fronts.main.index', [
+            'products' => $products,
+        ]);
     }
 }

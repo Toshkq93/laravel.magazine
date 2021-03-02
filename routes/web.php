@@ -18,6 +18,7 @@ Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('h
 Route::get('/category/{slug}', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category');
 
 Route::get('/product/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->name('product.index');
+Route::get('/product', [\App\Http\Controllers\ProductController::class, 'modal'])->name('product.modal');
 
 Route::get('/change/{id}', [\App\Http\Controllers\CurrencyController::class, 'change'])->name('currency');
 
