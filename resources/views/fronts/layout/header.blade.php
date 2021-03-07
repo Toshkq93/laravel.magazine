@@ -147,56 +147,46 @@
                     <div class="top-cart">
                         <ul>
                             <li>
-                                <a href="cart.html">
+                                <a href="{{ route('cart.show') }}">
                                     <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
                                     <span class="cart-total">
 			                    					<span class="cart-title">shopping cart</span>
-				                    				<span class="cart-item">2 item(s)- </span>
-				                    				<span class="top-cart-price">$365.00</span>
+				                    				<span class="cart-item">{{ session('cartQty') ?? 0}} item(s)- </span>
+				                    				<span class="top-cart-price">{{ round(session('cartSum') / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
 			                    				</span>
                                 </a>
                                 <div class="mini-cart-content">
+                                    @if(session()->has('cart'))
+                                        @foreach(session('cart') as $id => $product)
                                     <div class="cart-img-details">
                                         <div class="cart-img-photo">
-                                            <a href="#"><img src="{{ asset('img/product/total-cart.jpg') }}" alt="#"></a>
+                                            <a href="{{--{{ route('product.index', ['slug' => $product['alias']]) }}--}}"><img src="{{ \App\Http\Helpers\ProductHelper::getImage($product['img']) }}" alt="#"></a>
                                         </div>
                                         <div class="cart-img-content">
-                                            <a href="#"><h4>Prod Aldults</h4></a>
+                                            <a href="#"><h4>{{ $product['title'] }}</h4></a>
                                             <span>
-															<strong class="text-right">1 x</strong>
-															<strong class="cart-price text-right">$180.00</strong>
+															<strong class="text-right">{{ $product['qty'] }} x</strong>
+															<strong class="cart-price text-right">{{ round($product['price'] / session('currency.value'), 2) }} {{ session('currency.code') }}</strong>
 														</span>
                                         </div>
                                         <div class="pro-del">
                                             <a href="#"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
-                                    <div class="clear"></div>
-                                    <div class="cart-img-details">
-                                        <div class="cart-img-photo">
-                                            <a href="#"><img src="{{ asset('img/product/total-cart2.jpg') }}" alt="#"></a>
-                                        </div>
-                                        <div class="cart-img-content">
-                                            <a href="#"><h4>Fact Prone</h4></a>
-                                            <span>
-															<strong class="text-right">1 x</strong>
-															<strong class="cart-price text-right">$185.00</strong>
-														</span>
-                                        </div>
-                                        <div class="pro-del">
-                                            <a href="#"><i class="fa fa-times"></i></a>
-                                        </div>
-                                    </div>
+                                        @endforeach
                                     <div class="cart-inner-bottom">
 													<span class="total">
 														Total:
-														<span class="amount">$550.00</span>
+														<span class="amount">{{ round(session('cartSum') / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
 													</span>
                                         <span class="cart-button-top">
-														<a href="cart.html">View Cart</a>
+														<a href="{{ route('cart.show') }}">View Cart</a>
 														<a href="checkout.html">Checkout</a>
 													</span>
                                     </div>
+                                    @else
+                                    <div class="text-center">Корзина пуста</div>
+                                    @endif
                                 </div>
                             </li>
                         </ul>

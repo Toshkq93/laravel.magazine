@@ -139,14 +139,14 @@
                                                             </div>
                                                             <div class="product-description">
                                                                 <h5><a href="#">{{ $product->title }}</a></h5>
-                                                                <div class="price-box">
-                                                                    @if($product->old_price)
-                                                                    <span class="price">{{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
-                                                                    <span class="old-price">{{ round($product->old_price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
-                                                                    @else
-                                                                        <span class="price">{{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
-                                                                    @endif
-                                                                </div>
+<div class="price-box">
+    @if($product->old_price)
+    <span class="price" id="base-price" data-base="{{ round($product->price / session('currency.value'), 2) }}">{{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
+    <span class="old-price" >{{ round($product->old_price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
+    @else
+        <span class="price" id="base-price" data-base="{{ round($product->price / session('currency.value'), 2) }}">{{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
+    @endif
+</div>
                                                                 <span class="rating">
 																		<i class="fa fa-star"></i>
 																		<i class="fa fa-star"></i>
@@ -158,7 +158,7 @@
             <div class="product-action">
                 <div class="button-group">
                     <div class="product-button">
-                        <button><i class="fa fa-shopping-cart"></i> Add
+                        <button class="toch-add-cart" data-id="{{ $product->id }}"><i class="fa fa-shopping-cart"></i> Add
                             to Cart
                         </button>
                     </div>

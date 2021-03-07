@@ -71,17 +71,21 @@
                                     <hr/>
                                     <p class="short-description">{{ $product->content }}</p>
                                     <hr/>
-                                    @if($product->old_price)
-                                    <span class="current-price"><strike>{{ round($product->old_price / session('currency.value'), 2) }} {{ session('currency.code') }}</strike></span><br>
-                                        <span class="current-price" id="base-price" data-base="{{ round($product->price / session('currency.value'), 2) }}">{{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
-                                    @else
-                                        <span class="current-price" id="base-price" data-base="{{ round($product->price / session('currency.value'), 2) }}">{{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
-                                    @endif
+@if($product->old_price)
+<span class="current-price"><strike>{{ round($product->old_price / session('currency.value'), 2) }} {{ session('currency.code') }}</strike></span><br>
+    <span class="current-price" id="base-price" data-base="{{ round($product->price / session('currency.value'), 2) }}">
+        {{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}
+    </span>
+@else
+    <span class="current-price" id="base-price" data-base="{{ round($product->price / session('currency.value'), 2) }}">
+        {{ round($product->price / session('currency.value'), 2) }} {{ session('currency.code') }}
+    </span>
+@endif
                                 </div>
                                 <div class="about-product">
                                     @if($product->modifications->count())
                                     <div class="product-select">
-                                        <label>Color</label>
+                                        <label>Color:</label>
                                         <select class="form-control">
                                             <option> --- Please Select ---</option>
                                             @foreach($product->modifications as $modification)
@@ -91,10 +95,11 @@
                                     </div>
                                     @endif
                                 </div>
-                                <div class="product-quantity">
+                                <div class="product-quantity" id="add-to-cart">
                                     <span>Qty</span>
-                                    <input type="number" placeholder="1"/>
-                                    <button type="submit" class="toch-button toch-add-cart">Add to Cart</button>
+                                    <input type="number" name="qty" id="qty-product" size="4" value="1" min="1" step="1"/>
+
+                                    <button type="submit" id="add-to-cart" data-id="{{ $product->id }}" class="toch-button toch-add-cart">Add to Cart</button>
                                     <button type="submit" class="toch-button toch-wishlist">wishlist</button>
                                 </div>
                             </div>

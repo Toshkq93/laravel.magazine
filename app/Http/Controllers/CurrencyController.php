@@ -8,7 +8,7 @@ class CurrencyController extends Controller
 {
     public function change($id)
     {
-        $currency = Currency::first($id);
+        $currency = Currency::find($id);
         session()->put(['currency' => $currency]);
         return redirect()->back();
     }

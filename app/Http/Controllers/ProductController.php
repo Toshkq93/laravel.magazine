@@ -25,6 +25,5 @@ class ProductController extends Controller
             $product->img = ProductHelper::getImage($product->img);
             return response()->json($product);
         }
-
     }
 }

@@ -71,7 +71,6 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
             data: {id: id},
             type: 'GET',
             success: function(res){
-                console.log(href);
                 $('#title-product').text(res.title);
                 $('#price-product').text(res.price);
                 if (res.old_price){
@@ -89,7 +88,31 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
             }
         })
     });
-
+    /*Cart*/
+    $('body').on('click', '.toch-add-cart', function(){
+        var id = $(this).data('id'),
+            qty = $('#qty-product').val() ? $('#qty-product').val() : 1,
+            mod = $('.product-select select').val(),
+            priceBase = $('#base-price').data('base'),
+            priceMod = $('.product-select select').find('option').filter(':selected').data('price'),
+            price;
+        if (priceMod){
+            price = priceBase + priceMod;
+        }else {
+            price = priceBase;
+        }
+        $.ajax({
+            url: '/cart/add',
+            data: {id: id, qty: qty, mod: mod, price: price},
+            type: 'GET',
+            success: function (){
+                alert('Ваш продукт успешно добавлен в корзину');
+            },
+            error: function (){
+                alert('Ошибка! Попробуйте позже');
+            }
+        });
+    });
     $.fn.meanmenu = function (options) {
 				var defaults = {
 						meanMenuTarget: jQuery(this), // Target the current HTML markup you wish to replace

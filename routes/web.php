@@ -22,6 +22,9 @@ Route::get('/product', [\App\Http\Controllers\ProductController::class, 'modal']
 
 Route::get('/change/{id}', [\App\Http\Controllers\CurrencyController::class, 'change'])->name('currency');
 
+Route::get('/cart/add', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+Route::get('/cart/show',[\App\Http\Controllers\CartController::class, 'show'])->name('cart.show');
+
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/', [\App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.home');
         Route::resource('/products', 'ProductController');
