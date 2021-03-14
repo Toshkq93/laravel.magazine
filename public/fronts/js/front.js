@@ -113,6 +113,75 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
             }
         });
     });
+    $('#country select').on('change', function (){
+        var id = $(this).find('option').filter(':selected').data('id');
+        $.ajax({
+            url: '/cart/getRegions',
+            data: {id: id},
+            type: 'GET',
+            success: function(res){
+                $('#regions').show();
+                $('#regions option').remove();
+                var option = '';
+                for (var i = 0; i < res.length; i++){
+                    option += "<option data-id='"+ res[i].id +"' value='" + res[i].id +
+                        "'>" + res[i].name + "</option>"
+                }
+                $('#region').append(option);
+            },
+            error: function () {
+                alert('Ошибка! Попробуйте позже');
+            }
+        });
+    });
+    $('#regions select').on('change', function(){
+       var idRegion = $(this).find('option').filter(':selected').data('id');
+       $.ajax({
+           url: '/cart/getCities',
+           data: {id: idRegion},
+           type: 'GET',
+           success: function(res){
+               $('#cities').show();
+               $('#cities option').remove();
+               var option = '';
+               for (var i = 0; i < res.length; i++){
+                   option += "<option value='" + res[i].id +
+                       "'>" + res[i].name + "</option>"
+               }
+               $('#city').append(option);
+           }
+       });
+    });
+    $('.shopping-cart').on('click', '#remove-item', function(){
+        var id = $(this).data('id'),
+            qty = $('#input-qty').val();
+        $.ajax({
+            url: '/cart/delete',
+            type: 'GET',
+            data: {id: id, qty: qty},
+            success: function(){
+                location.reload();
+            },
+            error: function(){
+                alert('Ошибка! Попробуйте позже');
+            }
+        });
+    });
+    $('.shopping-cart').on('click', '#update-qty', function () {
+        var id = $(this).data('id'),
+            qty = $('#input-qty').val();
+        $.ajax({
+            url: '/cart/update',
+            type: 'GET',
+            data: {id: id, qty: qty},
+            success: function(){
+                location.reload();
+            },
+            error: function(){
+                alert('Ошибка! Попробуйте позже');
+            }
+        });
+    });
     $.fn.meanmenu = function (options) {
 				var defaults = {
 						meanMenuTarget: jQuery(this), // Target the current HTML markup you wish to replace

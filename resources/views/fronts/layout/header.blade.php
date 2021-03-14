@@ -177,7 +177,7 @@
                                     <div class="cart-inner-bottom">
 													<span class="total">
 														Total:
-														<span class="amount">{{ round(session('cartSum') / session('currency.value'), 2) }} {{ session('currency.code') }}</span>
+														<span class="amount">{{ round(session('cartSum') / session('currency.value') ?? 1, 2) }} {{ session('currency.code') }}</span>
 													</span>
                                         <span class="cart-button-top">
 														<a href="{{ route('cart.show') }}">View Cart</a>

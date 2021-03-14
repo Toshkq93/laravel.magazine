@@ -41,7 +41,7 @@ class CurrencyCommand extends Command
     public function handle()
     {
         $currencies = (Http::get('https://developerhub.alfabank.by:8273/partner/1.0.0/public/nationalRates', ['currencyCode' => '840,978,643,980'])->json())['rates'];
-        if ($currencies) {
+        if ($currencies['rates']) {
             foreach ($currencies as $currency) {
                 Currency::updateOrCreate(
                     [

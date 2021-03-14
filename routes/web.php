@@ -24,6 +24,12 @@ Route::get('/change/{id}', [\App\Http\Controllers\CurrencyController::class, 'ch
 
 Route::get('/cart/add', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
 Route::get('/cart/show',[\App\Http\Controllers\CartController::class, 'show'])->name('cart.show');
+Route::get('/cart/getRegions', [\App\Http\Controllers\CartController::class, 'getRegions']);
+Route::get('/cart/getCities', [\App\Http\Controllers\CartController::class, 'getCities']);
+Route::get('cart/delete', [\App\Http\Controllers\CartController::class, 'delete']);
+Route::get('/cart/update',[\App\Http\Controllers\CartController::class, 'update']);
+
+Route::get('/order', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('save.order');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/', [\App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.home');

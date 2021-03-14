@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Currency;
 use App\Product;
+use App\Regions;
+use Illuminate\Support\Facades\Http;
 
 class MainController extends Controller
 {
