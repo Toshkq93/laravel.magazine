@@ -70,13 +70,15 @@
                         </table>
                     </div>
                 </div>
+            @auth
                 <!-- End Table -->
                 <h3 class="title-group-3 gfont-1">What would you like to do next?</h3>
                 <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
                 <!-- Accordion start -->
                 <div class="accordion-cart">
                     <div class="panel-group" id="accordion">
-                        <form action="{{ route('save.order') }}" method="get">
+
+                        <form action="{{ route('save.order') }}" method="post">
                         <!-- Start Coupon -->
                             @csrf
                         <div class="panel panel_default">
@@ -91,7 +93,7 @@
                                         <p>Enter your coupon here</p>
                                     </div>
                                     <div class="input-group">
-                                        <input class="form-control" name="code" type="text" placeholder="Enter your coupon here" />
+                                        <input class="form-control" name="coupon_code" type="text" placeholder="Enter your coupon here" />
                                         <button type="submit" class="btn btn-primary">Apply Coupon</button>
                                     </div>
                                 </div>
@@ -111,7 +113,7 @@
                                         <p>Enter your gift voucher code here</p>
                                     </div>
                                     <div class="input-group">
-                                        <input class="form-control" type="text" name="code2" placeholder="Enter your gift voucher code here" />
+                                        <input class="form-control" type="text" name="gift_voucher" placeholder="Enter your gift voucher code here" />
                                         <button type="submit" class="btn btn-primary">Apply Voucher</button>
                                     </div>
                                 </div>
@@ -146,7 +148,7 @@
                                         <div class="form-group" id="regions">
                                             <label class="col-sm-2 control-label"><sup>*</sup>Region / State</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control" id="region" name="regions_id">
+                                                <select class="form-control" id="region" name="region_id">
                                                     <option> --- Please Select --- </option>
                                                 </select>
                                             </div>
@@ -162,7 +164,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"><sup>*</sup>Post Code</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="Post Code" />
+                                                <input type="text" name="post_code" class="form-control" placeholder="Post Code" />
                                             </div>
                                         </div>
                                     </div>
@@ -175,9 +177,14 @@
                                 <button type="submit" class="btn btn-primary pull-right">Checkout</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
                 <!-- Accordion end -->
+                @endauth
+                @guest
+                    <div class="text-center"><h4><a href="{{ route('register') }}">Зарегистрируйтесь</a> или <a href="{{ route('login') }}">Войдите</a> на сайт</h4></div>
+                @endguest
             </div>
         </div>
     </div>

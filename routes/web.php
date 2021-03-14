@@ -29,7 +29,7 @@ Route::get('/cart/getCities', [\App\Http\Controllers\CartController::class, 'get
 Route::get('cart/delete', [\App\Http\Controllers\CartController::class, 'delete']);
 Route::get('/cart/update',[\App\Http\Controllers\CartController::class, 'update']);
 
-Route::get('/order', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('save.order');
+Route::post('/order', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('save.order');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/', [\App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.home');

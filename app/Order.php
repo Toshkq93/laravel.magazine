@@ -11,5 +11,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
-    //
+    protected $fillable = ['user_id', 'status', 'currency', 'note', 'country_id', 'region_id', 'city_id', 'coupon_code', 'gift_voucher'];
 }
