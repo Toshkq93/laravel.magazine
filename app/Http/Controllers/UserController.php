@@ -23,7 +23,7 @@ class UserController extends Controller
             if (Auth::user()->is_admin){
                 return redirect()->route('admin.home');
             }else{
-                return redirect()->back();
+                return redirect()->home();
             }
         }
         return redirect()->back()->with('error' , 'не верно введы емаил или пароль');

@@ -17,6 +17,7 @@ class MainController extends Controller
         }else{
              session()->put(['currency' => Currency::where('code', 'BYN')->first()]);
         }
+
         return view('fronts.main.index', [
             'products' => $products,
         ]);
