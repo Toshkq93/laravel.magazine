@@ -116,33 +116,20 @@
             <div class="col-md-9 col-sm-12">
                 <div class="quick-access">
                     <div class="search-by-category">
+                        <form action="{{ route('search.index') }}" method="get">
                         <div class="search-container">
-                            <select>
-                                <option class="all-cate">All Categories</option>
-                                <optgroup  class="cate-item-head" label="Cameras & Photography">
-                                    <option class="cate-item-title">Handbags</option>
-                                    <option class="c-item">Blouses And Shirts</option>
-                                    <option class="c-item">Clouthes</option>
-                                </optgroup>
-                                <optgroup  class="cate-item-head" label="Laptop & Computer">
-                                    <option class="cate-item-title">Apple</option>
-                                    <option class="c-item">Dell</option>
-                                    <option class="c-item">Hp</option>
-                                    <option class="c-item">Sony</option>
-                                </optgroup>
-                                <optgroup  class="cate-item-head" label="Electronic">
-                                    <option class="c-item">Mobile</option>
-                                    <option class="c-item">Speaker</option>
-                                    <option class="c-item">Headphone</option>
-                                </optgroup>
+                            <select name="category_id" class="form-control">
+                                <option value="">All</option>
+                                @include('.admin.category.create_form')
                             </select>
                         </div>
                         <div class="header-search">
-                            <form action="#">
-                                <input type="text" placeholder="Search">
+
+                                <input type="text" id="typeahead" placeholder="Search" name="q" autocomplete="off">
                                 <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
+
                         </div>
+                        </form>
                     </div>
                     <div class="top-cart">
                         <ul>
@@ -237,5 +224,4 @@
         </div>
     </div>
 </div>
-
 <!-- End Mobile-menu -->

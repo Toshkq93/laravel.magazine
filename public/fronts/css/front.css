@@ -65,9 +65,9 @@
 }
 
 /* mouse grab icon */
-/*.grabbing {
+.grabbing {
     cursor:url(grabbing.png) 8 8, move;
-}*/
+}
 
 /* fix */
 .owl-carousel  .owl-wrapper,
@@ -6604,7 +6604,6 @@ p.welcome-msg {
 .preview-1 .nivo-controlNav {
   bottom: 0;
   left: 0;
-  position: inherit;
   right: 0;
   z-index: 99999;
 }
@@ -7286,7 +7285,7 @@ ul.footer-content.box-information li a {
 .payment {
   float: right;
 }
-#scrollUp {
+/*#scrollUp {
   background: #e95668 url("img/icon/back-top.png") no-repeat scroll 0 0;
   bottom: 35px;
   height: 54px;
@@ -7294,10 +7293,10 @@ ul.footer-content.box-information li a {
   text-indent: -99999px;
   transition: all 0.3s ease-in-out 0s;
   width: 54px;
-}
-#scrollUp:hover {
+}*/
+/*#scrollUp:hover {
   background: #26acce url("img/icon/back-top.png") no-repeat scroll 0 -56px;
-}
+}*/
 /*===========================
  15. Product Modal
 ============================= */
@@ -8821,11 +8820,5 @@ p.welcome-msg, .support-client {
 
 
 
-}
-#regions{
-    display: none;
-}
-#cities{
-    display: none;
 }
 

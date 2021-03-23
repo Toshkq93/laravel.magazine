@@ -39,6 +39,7 @@ mix.styles([
         'resources/assets/fronts/js/imagezoom.js',
         'resources/assets/fronts/js/plugins.js',
         'resources/assets/fronts/js/main.js',
+        'resources/assets/fronts/js/typeahead.bundle.js',
     ], 'public/fronts/js/front.js')
     .copyDirectory('resources/assets/fronts/img', 'public/fronts/img')
     .copyDirectory('resources/assets/fronts/fonts', 'public/fronts/fonts');

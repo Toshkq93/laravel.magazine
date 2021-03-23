@@ -27,7 +27,7 @@
 <!-- HEADER AREA END -->
 
 <!-- START PAGE-CONTENT -->
-<section class="page-content">
+<section class="page-content justify-content-sm-center">
     @include('fronts.layout.errors')
     @include('fronts.layout.sidebar')
     @yield('content')
@@ -42,8 +42,10 @@
 <!-- END QUICKVIEW PRODUCT -->
 <script>
     let code = '{{ session('currency.code') }}';
+    let path = '{{ route('home') }}';
+    let valueCur = '{{session('currency.value')}}';
 </script>
-<script src="{{ asset('fronts/js/front.js') }}"></script>
 
+<script src="{{ asset('fronts/js/front.js') }}"></script>
 </body>
 </html>

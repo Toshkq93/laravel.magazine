@@ -31,6 +31,9 @@ Route::get('/cart/update',[\App\Http\Controllers\CartController::class, 'update'
 
 Route::post('/order', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('save.order');
 
+Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index'])->name('search.index');
+Route::get('/search/autocomplite', [\App\Http\Controllers\SearchController::class, 'autocomplite']);
+
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/', [\App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.home');
         Route::resource('/products', 'ProductController');

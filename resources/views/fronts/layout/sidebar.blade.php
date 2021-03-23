@@ -9,7 +9,7 @@
         </div>
     </div>
 @endif--}}
-@if(!\Illuminate\Support\Facades\Request::is('login') && !\Illuminate\Support\Facades\Request::is('register'))
+@if(!\Illuminate\Support\Facades\Request::is('login') && !\Illuminate\Support\Facades\Request::is('register') && !\Illuminate\Support\Facades\Request::is('search'))
     <div class="col-md-3 col-sm-3">
         <div class="left-category-menu hidden-sm hidden-xs">
             <div class="left-product-cat">

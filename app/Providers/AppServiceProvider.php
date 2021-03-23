@@ -48,10 +48,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('fronts.layout.header', function ($view) {
-            $currencies = Currency::select('id', 'code')->get();
-
             $view->with([
-                'currencies' => $currencies,
+                'currencies' => Currency::select('id', 'code')->get(),
+                'categories' => Category::with('children')->where('parent_id')->get(),
+                'delimiter' => ''
                 ]);
         });
     }
