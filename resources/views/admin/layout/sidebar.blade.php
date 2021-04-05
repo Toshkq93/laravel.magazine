@@ -137,6 +137,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item has-treeview">
+                <a href="{{ route('orders') }}" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                        Заказы
+                    </p>
+                </a>
+            </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

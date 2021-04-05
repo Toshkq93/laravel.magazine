@@ -12,4 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 class OrderProduct extends Model
 {
     protected $fillable = ['order_id', 'product_id','qty','title','price'];
+
+    public function orders()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

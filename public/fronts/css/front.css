@@ -7730,7 +7730,7 @@ background: #EC4445;
 .shop-filter h2.shop-sidebar-title {
   margin: 0 0 20px;
 }
-.filter-menu ul li a {
+.filter-menu input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 center;
   border: 0 none !important;
   color: #444;
@@ -7738,8 +7738,7 @@ background: #EC4445;
   padding: 10px 5px;
   text-transform: capitalize;
 }
-.filter-menu ul li a::before {
-  background: rgba(0, 0, 0, 0) url("img/icon/icon-select-layer.png") no-repeat scroll -10px 5px;
+.filter-menu input{
   border: 3px solid transparent;
   border-radius: 0;
   content: "";
@@ -7749,7 +7748,6 @@ background: #EC4445;
   transition: all 0.3s ease 0s;
   width: 10px;
 }
-.filter-menu ul li a:hover:before {background: rgba(0, 0, 0, 0) url("img/icon/icon-select-layer.png") no-repeat scroll 5px 5px;}
 .accordion_one h4 {font-size: 25px;}
 .accordion_one h4 a {
   color: #999;
@@ -8818,7 +8816,21 @@ p.welcome-msg, .support-client {
   padding: 0 5px;
 }
 
-
-
 }
-
+.preloader{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:9999;
+    background-color:#fefefe;
+    opacity: .7;
+    display: none;
+}
+.preloader img{
+    position:relative;
+    left:50%;
+    top:50vh;
+    margin:-100px 0 0 -100px;
+}

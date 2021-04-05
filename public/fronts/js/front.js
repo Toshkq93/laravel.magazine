@@ -1445,13 +1445,13 @@ $('[data-toggle="tooltip"]').tooltip();
 	   range: true,
 	   min: 40,
 	   max: 600,
-	   values: [ 60, 570 ],
+	   values: [ 60/valueCur, 570/valueCur ],
 	   slide: function( event, ui ) {
-		$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		$( "#amount" ).val( ui.values[ 0 ]/valueCur + " - " + ui.values[ 1 ]/valueCur );
 	   }
 	  });
-	  $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	   " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	  $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +
+	   " - " + $( "#slider-range" ).slider( "values", 1 ) );
 	});
 
 
@@ -4056,7 +4056,33 @@ $('[data-toggle="tooltip"]').tooltip();
         });
     });
     /*Filter*/
-
+    $('.price_slider_amount').on('click', '#filter', function(){
+        var value = $('#amount').val();
+        $.ajax({
+           url: '/search'/*location.href*/,
+           data:{price:value},
+           type: 'GET',
+           beforeSend: function(){
+               $('.preloader').fadeIn(300, function() {
+               $('.listview').hide();
+               });
+           },
+            success: function(res){
+                $('.preloader').delay(500).fadeOut('slow', function(){
+                    $('.product-one').html(res).fadeIn();
+                    /*var url = location.search.replace(/filter(.+?)(&|$)/g, ''); //$2
+                    var newURL = location.pathname + url + (location.search ? "&" : "?") + "filter=" + data;
+                    newURL = newURL.replace('&&', '&');
+                    newURL = newURL.replace('?&', '?');
+                    history.pushState({}, '', newURL);*/
+                });
+                console.log(res);
+            },
+            error: function () {
+                alert('Ошибка!');
+            }
+        });
+    });
     /*Search*/
     var products = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,

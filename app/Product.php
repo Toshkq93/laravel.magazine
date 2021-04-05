@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Filters\QueryFilter;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,17 @@ class Product extends Model
 {
     use Sluggable;
 
-    protected $fillable = ['title', 'description', 'content', 'category_id', 'price', 'old_price', 'status', 'img', 'raiting', 'bestseller'];
+    protected $fillable = [
+        'title',
+        'description',
+        'content',
+        'category_id',
+        'price',
+        'old_price',
+        'status',
+        'img',
+        'raiting',
+        'bestseller'];
 
     public function sluggable(): array
     {
@@ -47,5 +58,10 @@ class Product extends Model
     public function modifications()
     {
         return $this->belongsToMany(Modification::class)->withTimestamps();
+    }
+
+    public function scopeFilter(Builder $builder, QueryFilter $filter)
+    {
+        return $filter->apply($builder);
     }
 }

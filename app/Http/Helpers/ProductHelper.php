@@ -3,9 +3,6 @@
 
 namespace App\Http\Helpers;
 
-
-use App\Gallery;
-use App\RelatedProduct;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -53,15 +50,16 @@ class ProductHelper
 
     public static function saveRelated($productsRelated, $product, $delete = null)
     {
-        foreach ($productsRelated as $key => $related){
-            $product->relatedProducts()->updateOrCreate([
-                'product_id' => $product->id
-            ],[
-                'product_id' => $product->id,
-                'related_id' => $related
-            ]);
+        if ($productsRelated) {
+            foreach ($productsRelated as $key => $related) {
+                $product->relatedProducts()->updateOrCreate([
+                    'product_id' => $product->id
+                ], [
+                    'product_id' => $product->id,
+                    'related_id' => $related
+                ]);
+            }
         }
-
     }
 
     public static function deleteDirectory($titleProduct)
